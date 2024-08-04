@@ -1,0 +1,682 @@
+@import url('https://fonts.googleapis.com/css2?family=Habibi&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'poppins';
+}
+body{
+    overflow: hidden;
+    text-transform: capitalize;
+}
+#page{
+    width: 100vw;
+    height: 100vh;
+    background-color: #0F2236;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+#loot{
+    width: 30%;
+    margin-left: 1vw;
+    height: 90%;
+    background-color: #1E313B;
+    border-radius: 10px;
+    display: flex;
+    gap: 1vw;
+    flex-direction: column;
+    position: relative;
+    color:white;
+    text-transform: capitalize;
+    align-items: center;
+}
+#play-typ{
+    margin-top: 2vw;
+    background-color: #101E29;
+    border-radius: 50px;
+    width: 80%;
+    display: flex;
+    height: 60px;
+    justify-content: space-around;
+    position: relative;
+    align-items: center;
+}
+.typ{
+    width: 45%;
+    border-radius: 50px;
+    height: 80%;
+    cursor: pointer;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+.typ p{
+    position: relative;
+    z-index: 100;
+}
+#slide{
+    width: 45%;
+    border-radius: 50px;
+    transition: all ease 0.3s;
+    background-color: #2B3B46;
+    height: 80%;
+    position: absolute;
+    left: 2%;
+}
+#container{
+    border-radius: 5px;
+    width: 65%;
+    background-color: #101F2F;
+    margin-right: 1vw;
+    position: relative;
+    height: 90%;
+    overflow: hidden;
+    color: white;
+}
+#mlt-overlay{
+    width: 90%;
+    height: 50%;
+    position: absolute;
+    z-index: 999;
+    /* background-color: red; */
+}
+#loot-overlay{
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.571);
+    height: 100%;
+    position: absolute;
+    z-index: 998;
+    display: none;
+}
+#top-cont{
+    width: 100%;
+    height: 85%;
+    background-color: #121E29;
+}
+#bottom-cont{
+    width: 97%;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    height: 15%;
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    bottom: 1vw;
+}
+#btn,#auto-btn{
+    font-size: 1.4vw;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    width: 85%;
+    background-color: #00E919;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    font-weight: 500;
+    z-index: 999;
+    height: 10%;
+}
+.amt-btn{
+    font-size: 1vw;
+    background-color: #2E4455;
+    color: white;
+    border: 1px solid #dadada;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 0.9vw 1vw;
+}
+#doller-sign {
+    width: 25px;    
+    height: 25px;  
+    display: flex;  
+    color: black;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: #6dbd13;
+}
+#wallet{
+    color: white;
+    font-size: 1vw;
+    display: flex;
+    flex-direction: column;
+    padding: 0 1.5vw;
+}
+#wallet h2{
+    font-size: 1.2vw;
+    font-weight: 300;
+    color: #dadada;
+}
+#wallet-main{
+    display: flex;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #dadada73;
+    width: auto;
+    background-color: #101F30;
+    align-items: center;
+    justify-content: space-between;
+}
+#wallet-main div{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+#wallet-main legend{
+    font-size: 1.4vw;
+}
+#wallet p{
+    font-size: 1.3vw;
+}
+#wallet i{
+    font-size: 1.6vw;
+    cursor: pointer;
+}
+#doller-sign {
+    width: 25px;    
+    height: 25px;  
+    display: flex;  
+    color: black;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: #6dbd13;
+}
+#bet-amount h2,#made-amount h2,#stop-loss h2{
+    font-size: 1vw;
+    color: #dadada;
+    font-weight: 300;
+}
+#bet-amount,#made-amount,#stop-loss{
+    font-size: 1.2vw;
+    color: white;
+    width: 85%;
+}
+#bet-main,#stop-main{
+    display: flex;
+}
+#amount{
+    display: flex;
+    justify-content: space-between;
+    background-color: #101F30;
+    align-items: center;
+    border: 1px solid #dadada;
+    border-radius: 5px;
+    width: 63%;
+    padding-right: 1vw;
+}
+#stop{
+    display: flex;
+    justify-content: space-between;
+    background-color: #101F30;
+    align-items: center;
+    border: 1px solid #dadada;
+    border-radius: 5px;
+    width: 94%;
+    padding-right: 1vw;
+
+}
+#made-main{
+    display: flex;
+    justify-content: space-between;
+    background-color: #101F30;
+    align-items: center;
+    border: 1px solid #dadada;
+    border-radius: 5px;
+    width: 94%;
+    padding-right: 1vw;
+}
+#amount input,#made-money{
+    padding: 0.8vw;
+    font-size: 1.2vw;
+    border: none;
+    width: 80%;
+    color: white;
+    background-color: transparent;
+}
+#stop-inp{
+    padding: 0.8vw;
+    font-size: 1.2vw;
+    border: none;
+    width: 90%;
+    color: white;
+    background-color: transparent;
+}
+
+#amount input[type=number] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+#amount input[type=number]:focus, #stop input[type=number]:focus {
+    outline: none;
+}
+#wallet{
+    width: 85%;
+}
+#wallet h2{
+    font-size: 1.2vw;
+    font-weight: 300;
+}
+
+.states h2{
+    font-size: 1.1vw;
+    font-weight: 200;
+}
+.states{
+    position: relative;
+    padding: 0.8vw 1vw;
+    width: 33%;
+    background-color:#1C2B35;
+}
+.states input{
+    padding: 0.8vw;
+    font-size: 1vw;
+    z-index: 99;
+    width: 90%;
+    border: none;
+    color: white;
+    border-radius: 1px;
+    background-color: #0F1B25;
+}
+
+.states input[type=number] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+.states input[type=number]:focus {
+    outline: none;
+}
+.like-inp{
+    padding: 0.8vw;
+    font-size: 1vw;
+    z-index: 99;
+    width: 90%;
+    border: none;
+    color: white;
+    border-radius: 1px;
+    background-color: #0F1B25;
+}
+#slider{
+    width: 80%;
+    position: absolute;
+    top: 30%;
+    height: 12%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+#count{
+    padding: 0 2vw;
+    display: flex;
+    justify-content: space-between;
+}
+#main-slider{
+
+    height: 100%;
+    background-color: #2D3D47;
+    border-radius: 50px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#margin-slider{
+    width: 94%;
+    border-radius: 50px;
+    height: 50%;
+    background-color: #181926;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+#color-slider{
+    border-radius: 50px;
+    /* background-color: blue; */
+    width: 95%;
+    height: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+#color-slider input{
+    width: 100%;
+    height: 100%;
+}
+#main-dice{
+    display: flex;
+    left: 50%;
+    transform: translate(-50%);
+    justify-content: center;
+    align-items: center;
+    top: -32px;
+    position: absolute;
+    width: 80px;
+    /* transition: all ease-in-out 0.2s; */
+    scale: 0;
+}
+#main-dice p{
+    color: #00E919;
+    left: -2px;
+    top: -6px;
+    z-index: 99 ;
+    font-weight: 600;
+    position: relative;
+}
+#dice{
+    width: 15vw;
+    position: absolute;
+    top: 50%;
+    left: 55%;
+    transform: translate(-50%,-50%);
+}
+#all-model{
+    position: fixed;
+    top: 10%;
+    left: -100%;
+    transform: translateY(-50%);
+    z-index: 99;
+    background-color: #dadada;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 2vw;
+    padding: 1vw 2vw;
+    transition: all ease 0.3s;
+    overflow: hidden;
+    z-index: 9999;
+}
+#line{
+    background-color: navy;
+    bottom: 0;
+    position: absolute;
+    width: 100%;
+    height: 10%;
+    left: 0;
+    /* animation: anime 3s linear 1 forwards; */
+}
+#overlay{
+    background-color: rgba(0, 0, 0, 0.571);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 999;
+    display: none;
+}
+i{
+    cursor: pointer;
+}
+#add-model{
+    position: absolute;
+    top: 50%;
+    left: -100%;
+    transition: all ease 0.3s;
+    transform: translate(-50%,-50%);
+    z-index: 9999;
+    display: flex;
+    height: 70%;
+    width: 70%;
+    flex-direction: column;
+    align-items: center;
+    background-color: #dadada;
+    justify-content: center;
+    gap: 2vw;
+    border-radius: 5px;
+}
+#add-model input{
+    outline: none;
+    font-size: 1.4vw;
+    width: 40%;
+    padding: 10px 12px;
+    border-radius: 5px;
+    border: 1px solid #bababa;
+}
+#add-btn{
+    background-color: #0F2236;
+    color: white;
+    outline: none;
+    border: none;
+    font-size: 1.2vw;
+    padding: 10px 12px;
+    cursor: pointer;
+    border-radius: 1px;
+}
+#close2{
+    position: absolute;
+    right: 2.5%;
+    top: 5%;
+}
+.autoElem{
+    display: none;
+}
+#auto-btn{
+    display: none;
+}
+#timeout-btn{
+    position: absolute;
+    left: 50%;
+    display: none;
+    top: 1%;
+    background-color: #1A2C38;
+    color: white;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    padding: 10px 12px;
+    transform: translate(-50%);
+    transition: all ease 0.3s;
+    cursor: pointer;
+}
+#timeout-btn:hover{
+    background-color: #2E4455;
+
+}
+
+@media screen and (max-width:500px) {
+    body{
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+    #page{
+        min-height: 130vh;
+        gap: 10vw;
+        flex-direction: column-reverse;
+    }
+    #container{
+        height: 50%;
+        width: 95%;
+        margin-top: 2vw;
+        margin-bottom: 5vw;
+    }
+    #slider{
+        width: 90%;
+    }
+    .states h2{
+        font-size: 3.5vw;
+    }
+    .like-inp{
+        font-size: 3vw;
+        padding: 1.5vw;
+    }
+    #mlt{
+        font-size: 3vw;
+        padding: 1.5vw;
+    }
+    #loot{
+        gap: 3vw;
+        width: 95%;
+        height: 60%;
+        margin-bottom: 20vw;
+    }
+    #dice{
+        width: 50vw;
+    }
+    #wallet{
+        width: 90%;
+    }
+    #wallet h2{
+        font-size: 3.5vw;
+    }
+    #wallet-main legend{
+        font-size: 4vw;
+    }
+    #wallet p{
+        font-size: 4vw;
+    }
+    #bet-amount, #made-amount, #stop-loss{
+        width: 90%;
+    }
+    #bet-amount h2, #made-amount h2, #stop-loss h2{
+        font-size: 3.5vw;
+    }
+    #amount{
+        width: 70%;
+    }
+    #amount input, #made-money{
+        padding: 2.5vw;
+        font-size: 3.5vw;
+    }
+    .amt-btn{
+        font-size: 3.5vw;
+        padding: 3vw 2.5vw;
+    }
+    #btn, #auto-btn {
+        width: 90%;
+        font-size: 4vw;
+    }
+    #stop-inp{
+        font-size: 3.5vw;
+        padding: 2vw;
+    }
+    #stop{
+        width: 98%;
+    }
+    #made-main{
+        width: 98%;
+    }
+    #all-model{
+        width: 70%;
+        font-size: 4vw;
+        padding: 5vw 3vw;
+    }
+    #mlt-overlay{
+        width: 110%;
+        height: 70%;
+    }
+    #bottom-cont{
+        height: 20%;
+        bottom: 3vw;
+        width: 95%;
+    }
+}
+
+#stratergy{
+    font-size: 1.4vw;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    background-color: #2B404C;
+    text-transform: capitalize;
+    transition: all ease 0.1s;
+    cursor: pointer;
+    width: 85%;
+    color: white;
+    padding: 1vw 0;
+}
+#stratergy:hover{
+    background-color: #435765;
+}
+#use-strat-model{
+    width: 50%;
+    height: 60%;
+    /* background-color: #165f90; */
+    background-color: #1A2C38;
+    position: absolute;
+    display: none;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 99999;
+    border-radius: 5px;
+    color: white;
+}
+#use-strat-cont{
+    padding: 1vw 2vw;
+    height: 100%;
+}
+#use-strat-model h2{
+    font-size: 1.6vw;
+    font-weight: 300;
+}
+#all-strats{
+    display: flex;
+    flex-direction: column;
+    margin-top: 2vw;
+    align-items: center;
+    gap: 1vw;
+}
+
+#close3,#close4{
+    right: 2%;
+    top: 4%;
+    color: white;
+    position: absolute;
+    font-size: 1.4vw;
+}
+.strat-btn{
+    width: 70%;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 1vw 2vw;
+    display: flex;
+    align-items: center;
+    height: 20%;
+    justify-content: center;
+    background-color: #2D404D;
+}
+.strat-btn p{
+    font-size: 1.4vw;
+    font-weight: 400;
+}
+#using{
+    position: absolute;
+    top: 1%;
+    right: 2%;
+}
+#create-strat{
+    font-size: 1.4vw;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    width: 50%;
+    background-color: #00E919;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    color: black;
+    font-weight: 500;
+    text-transform: capitalize;
+    position: absolute;
+    bottom: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 999;
+    height: 20%;
+}
+#stats-disp{
+    position: absolute;
+    left: 2%;
+    top: 2%;
+}
+#wincount{
+    color: #00E919;
+    font-weight: 600;
+}
+#loosecount{
+    color: #D71640;
+    font-weight: 600;
+}

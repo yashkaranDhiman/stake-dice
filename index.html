@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>stake dice</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <main>
+        <div id="page">
+            <div id="use-strat-model">
+                <div id="use-strat-cont">
+                    <i class="ri-close-large-line" id="close3"></i>
+                    <h2>Select any :</h2>
+                    <div id="all-strats">
+                        <div id="strat1-btn" class="strat-btn">
+                            <p>stratergy 1</p>
+                        </div>
+                        <div class="strat-btn">
+                            <p>stratergy 2</p>
+                        </div>
+                        <div class="strat-btn">
+                            <p>stratergy 3</p>
+                        </div>
+                    </div>
+                    <div id="create-strat">
+                        <p>create stratergy</p>
+                    </div>
+                </div>
+            </div>
+            <audio src="./winaud.mp3" id="winaud"></audio>
+            <div id="add-model">
+                <i class="ri-close-large-line" id="close2"></i>
+                <input type="number" name="cred" id="cred" min="0" max="1000" inputmode="numeric" placeholder="$99">
+                <input type="number" name="secret" id="secret" placeholder="Enter the secret key">
+                <button id="add-btn">Add</button>
+            </div>
+            <div id="overlay"></div>
+            <div id="all-model">
+                <p></p>
+                <i class="ri-close-large-line" id="close"></i>
+                <div id="line"></div>
+            </div>
+
+            <div id="loot">
+                
+                <div id="loot-overlay"></div>
+                <div id="play-typ">
+                    <div id="slide"></div>
+                    <div id="manual" class="typ">
+                        <p>manual</p>
+                    </div>
+                    <div id="auto" class="typ">
+                        <p>auto</p>
+                    </div>
+                </div>
+                
+                <div id="wallet">
+                    <h2>wallet</h2>
+                    <div id="wallet-main">
+                        <div>
+
+                            <legend>$</legend>
+                            <p>0.00</p>
+                        </div>
+                        <i class="ri-add-line" id="add-money" onclick="addModelopen()"></i>
+                    </div>
+                </div>
+                <div id="bet-amount">
+                    <h2>Bet Amount</h2>
+                    <div id="bet-main">
+                        <div id="amount">
+                            <input type="number" name="money" min="0" inputmode="numeric" id="money">
+                        </div>
+                        <div id="bet-btn">
+                            <button class="amt-btn" id="half">1/2 x</button>
+                            <button class="amt-btn" id="double">2 x</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="autoElem" id="made-amount">
+                    <h2>Total Profit</h2>
+                    <div id="made-main">
+                        <div id="made">
+                            <div id="made-money">$0.00</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="autoElem" id="stop-loss">
+                    <h2>Stop loss</h2>
+                    <div id="stop-main">
+                        <div id="stop">
+                            <input type="number" inputmode="numeric" id="stop-inp">
+                        </div>
+                    </div>
+                </div>
+                <button class="autoElem" id="stratergy">Use Stratergy</button>
+                <button class="manualElem unres" id="btn" onclick="checkDice()">Bet</button>
+                <button class="autoElem unres"  id="auto-btn">AutoBet</button>
+            </div>
+            <div id="container">
+                <button id="timeout-btn">Normal</button>
+                <div id="stats-disp" class="autoElem">
+                    <p>Wins : <span id="wincount">0</span></p>
+                    <p>Looses : <span id="loosecount">0</span></p>
+                </div>
+                <p id="using"></p>
+                <div id="top-cont">
+                    <div id="slider">
+                        <div id="count">
+                            <p>0</p>
+                            <p>25</p>
+                            <p>50</p>
+                            <p>75</p>
+                            <p>100</p>
+                        </div>
+                        <div id="main-slider">
+                            <div id="margin-slider">
+                                <div id="main-dice">
+                                    <img src="dice.png" id="dice" alt="">
+                                    <p>50.00</p>
+                                </div>
+                                <div id="color-slider">
+                                    <input type="range" class="range-input" min="1" value="5050" max="9800" name="" id="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="bottom-cont">
+                    <div id="multipiler" class="states">
+                        <h2>multipiler</h2>
+                        <div id="mlt-overlay"></div>
+                        <input type="number" readonly value="2.0000" inputmode="numeric" name="mlt" id="mlt">
+                    </div>
+                    <div id="roll-over" class="states">
+                        <h2>Roll Over</h2>
+                        <div id="roll-over-inp" class="like-inp"></div>
+                    </div>
+                    <div id="win-chance" class="states">
+                        <h2>win chance</h2>
+                        <div id="win-chance-inp" class="like-inp">49.5000</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
+        integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

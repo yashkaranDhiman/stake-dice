@@ -1,0 +1,14 @@
+1.5x in 34.00
+1.8x in 45.00
+1.98x in 50.00
+2x in 50.50
+
+multiplier of 2.4x in rollover of 60.00
+multiplier of 7x in rollover of 85.00
+multiplier of 9x in rollover of 89.00
+multiplier of 9.9x in rollover of 90.00
+multiplier of 11x in rollover of 91.00
+multiplier of 20.00x in rollover of 94.00
+multiplier of 24.80x in rollover of 95.00
+multiplier of 33.00x in rollover of 97.00
+multiplier of 49.00x in rollover of 98.00
