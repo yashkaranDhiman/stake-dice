@@ -16,7 +16,11 @@ let slide = document.getElementById("slide");
 let allAutoComp = document.querySelectorAll(".autoElem");
 let winaud = document.getElementById("winaud");
 let sliderVal;
-let arr = [];
+// let arr = [];
+// let allStratArr = localStorage.getItem("allStrat");
+// if(!allStratArr){
+//     localStorage.setItem("allStrat",arr);
+// }
 
 function Tggl() {
     manualBtn.addEventListener("click", () => {
@@ -27,7 +31,6 @@ function Tggl() {
         slide.style.left = "2%";
     })
     autoBtn.addEventListener("click", () => {
-        auto()
         slide.style.left = "52%";
     })
 }
@@ -156,35 +159,30 @@ function checkDice() {
     }
 }
 
-function animateDice(profit, rn,speed) {
+function animateDice(profit, rn, speed) {
     let Dice = document.getElementById("main-dice");
     let diceNum = document.querySelector("#main-dice p");
-    if(speed){
-        if(speed === 500){
-            Dice.style.transition = ` all ease-in-out 0.2s`;
-        }
-        if(speed === 100 || speed === 10){
+    Dice.style.transition =  "all ease-in-out 0.2s";
+    if (speed) {
+        if (speed === 100 || speed === 10) {
             Dice.style.transition = "";
+            winaud.pause();
         }
     }
-    gsap.from(Dice, {
-        scale: 1.1,
-        delay: .1,
-        duration: .2
-    })
-    // gsap.from(diceNum, {
-    //     opacity: 0,
-    //     duration: 0.1,
-    //     scale: 0.5
-    // })
+    if (profit > 0 && speed === 500 || profit > 0 && !speed) {
+            winaud.valume = 0.5
+            winaud.play();
+    }
+
     diceNum.innerText = rn;
     Dice.style.left = rn + "%";
-    if (profit !== 0) {
+    if (profit > 0) {
         diceNum.style.color = "#00E919";
     }
     else {
         diceNum.style.color = "#D71640";
     }
+
 }
 
 function handleButtons() {
@@ -304,13 +302,10 @@ function auto() {
         isAutoBetting = !isAutoBetting;
         autoBetBtn.innerText = isAutoBetting ? "Stop Autobet" : "Start Autobet";
 
-        if (!isAutoBetting) {
-            getNotice(`Autobet is Stopped. Total Profit: ${totalProfit.toLocaleString()}`);
-            timeoutBtn.style.display = "none";
-            return;
-        }
+        timeoutIndex = 0;
+        timeoutDuration = timeoutDurations[timeoutIndex];
+        timeoutBtn.innerText = "Normal";
 
-        // Reset variables when starting the autobet
         totalProfit = 0;
         let winCount = 0;
         let looseCount = 0;
@@ -328,19 +323,27 @@ function auto() {
         let strat = JSON.parse(localStorage.getItem("strat1"));
         let currentBet = baseBet;
 
+        if (!isAutoBetting) {
+            getNotice(`Autobet is Stopped. Total Profit: ${totalProfit.toLocaleString()}`);
+            timeoutBtn.style.display = "none";
+            return;
+        }
+
         function placeBet() {
             if (!isAutoBetting || totalMoney <= stoploss ) {
                 lootOverlay.style.display = "none";
                 getNotice(`Autobet is Stopped. Total Profit: ${totalProfit.toLocaleString()}`);
-                autoBetBtn.innerText = "Start Autobet";
+                timeoutIndex = 0;
                 return;
             }
 
             lootOverlay.style.display = "block";
+            timeoutBtn.style.display = "block";
 
             let rn = Math.floor(Math.random() * 10000) / 100;
-            if (currentBet > totalMoney && isAutoBetting  && rn<rolloverVal) {
+            if (currentBet > totalMoney && isAutoBetting) {
                 lootOverlay.style.display = "none";
+                timeoutBtn.style.display = "none";
                 getNotice("Autobet stopped","no")
                 isAutoBetting = false;
                 autoBetBtn.innerText = "Start Autobet";
@@ -402,7 +405,7 @@ function auto() {
         placeBet();
     });
 }
-auto();
+auto()
 
 function useStratergy() {
     let strat1btn = document.getElementById("strat1-btn");

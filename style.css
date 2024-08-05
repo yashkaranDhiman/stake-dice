@@ -356,7 +356,7 @@ body{
     position: absolute;
     width: 80px;
     /* transition: all ease-in-out 0.2s; */
-    scale: 0;
+    scale: 1;
 }
 #main-dice p{
     color: #00E919;
