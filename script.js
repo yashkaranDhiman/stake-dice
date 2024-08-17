@@ -16,11 +16,6 @@ let slide = document.getElementById("slide");
 let allAutoComp = document.querySelectorAll(".autoElem");
 let winaud = document.getElementById("winaud");
 let sliderVal;
-// let arr = [];
-// let allStratArr = localStorage.getItem("allStrat");
-// if(!allStratArr){
-//     localStorage.setItem("allStrat",arr);
-// }
 
 function Tggl() {
     manualBtn.addEventListener("click", () => {
@@ -162,7 +157,7 @@ function checkDice() {
 function animateDice(profit, rn, speed) {
     let Dice = document.getElementById("main-dice");
     let diceNum = document.querySelector("#main-dice p");
-    Dice.style.transition =  "all ease-in-out 0.2s";
+    Dice.style.transition = "all ease-in-out 0.2s";
     if (speed) {
         if (speed === 100 || speed === 10) {
             Dice.style.transition = "";
@@ -170,8 +165,8 @@ function animateDice(profit, rn, speed) {
         }
     }
     if (profit > 0 && speed === 500 || profit > 0 && !speed) {
-            winaud.valume = 0.5
-            winaud.play();
+        winaud.valume = 0.5
+        winaud.play();
     }
 
     diceNum.innerText = rn;
@@ -265,17 +260,17 @@ function auto() {
     let autoBetBtn = document.getElementById("auto-btn");
     let profitDisp = document.getElementById("made-money");
     let timeoutBtn = document.getElementById("timeout-btn");
-    
+
     let isAutoBetting = false;
     let totalProfit = 0;
-    let timeoutDurations = [500,100, 10];
+    let timeoutDurations = [500, 100, 10];
     let timeoutIndex = 0;
-    let timeoutDuration = timeoutDurations[timeoutIndex]; 
+    let timeoutDuration = timeoutDurations[timeoutIndex];
 
     timeoutBtn.addEventListener("click", () => {
         timeoutIndex = (timeoutIndex + 1) % timeoutDurations.length;
         timeoutDuration = timeoutDurations[timeoutIndex];
-    
+
         let buttonText;
         if (timeoutDuration === 10) {
             buttonText = "Instant";
@@ -286,10 +281,10 @@ function auto() {
         }
         timeoutBtn.innerText = buttonText;
     });
-    
 
 
-    autoBtn.addEventListener("click",()=>{
+
+    autoBtn.addEventListener("click", () => {
         allAutoComp.forEach(e => {
             e.style.display = "block";
             document.getElementById("btn").style.display = "none";
@@ -320,7 +315,13 @@ function auto() {
         let totalMoney = Number(walletMoney.innerText.replace(/,/g, '')); // Remove commas for calculation
 
         // Get the strategy
-        let strat = JSON.parse(localStorage.getItem("strat1"));
+        let storedStrategies = JSON.parse(localStorage.getItem("allStrat"));
+        let strat;
+        storedStrategies.forEach(e=>{
+            if(e.isActive == true){
+                strat = e;
+            }
+        })
         let currentBet = baseBet;
 
         if (!isAutoBetting) {
@@ -330,7 +331,7 @@ function auto() {
         }
 
         function placeBet() {
-            if (!isAutoBetting || totalMoney <= stoploss ) {
+            if (!isAutoBetting || totalMoney <= stoploss) {
                 lootOverlay.style.display = "none";
                 getNotice(`Autobet is Stopped. Total Profit: ${totalProfit.toLocaleString()}`);
                 timeoutIndex = 0;
@@ -344,7 +345,7 @@ function auto() {
             if (currentBet > totalMoney && isAutoBetting) {
                 lootOverlay.style.display = "none";
                 timeoutBtn.style.display = "none";
-                getNotice("Autobet stopped","no")
+                getNotice("Autobet stopped", "no")
                 isAutoBetting = false;
                 autoBetBtn.innerText = "Start Autobet";
                 return;
@@ -358,12 +359,12 @@ function auto() {
                     walletMoney.innerText = totalMoney.toLocaleString(); // Format with commas
                     winaud.volume = .5;
                     winaud.play();
-                    animateDice(profit, rn,timeoutDuration);
+                    animateDice(profit, rn, timeoutDuration);
                 } else {
                     totalProfit -= currentBet; // Deduct bet amount from total profit
                     looseCount++;
                     walletMoney.innerText = totalMoney.toLocaleString(); // Format with commas
-                    animateDice(0, rn,timeoutDuration);
+                    animateDice(0, rn, timeoutDuration);
                 }
 
                 if (strat && strat.isActive) {
@@ -408,23 +409,10 @@ function auto() {
 auto()
 
 function useStratergy() {
-    let strat1btn = document.getElementById("strat1-btn");
-    let stratArr = {
-        name: "stratergy1",
-        isActive: false,
-        condition: [
-            { "win": "reset" },
-            { "loose": { "inc": 2 } },
-        ],
-    };
-    let StringyArr = JSON.stringify(stratArr);
-    let strat1 = localStorage.getItem("strat1");
-    let dsplStrat = document.getElementById("using");
-    if (!strat1) {
-        localStorage.setItem("strat1", StringyArr);
-    }
+    strategies = [];
     let useBtn = document.getElementById("stratergy");
     let useStratModel = document.getElementById("use-strat-model");
+    let dsplStrat = document.getElementById("using");
     let close = document.getElementById("close3");
     useBtn.addEventListener("click", () => {
         useStratModel.style.display = "block";
@@ -434,16 +422,68 @@ function useStratergy() {
         useStratModel.style.display = "none";
         overlay.style.display = "none";
     });
-    let strat = JSON.parse(localStorage.getItem("strat1"));
-    strat1btn.addEventListener("click", () => {
-        overlay.style.display = "none";
-        useStratModel.style.display = "none";
-        strat.isActive = true;
-        dsplStrat.innerText = "Using: Strategy One";
-        localStorage.setItem("strat1", JSON.stringify(strat));
-    });
-    if (strat.isActive == true) {
-        dsplStrat.innerText = "Using: Strategy One";
+    // this part is only for testing purpose and the strats will be added from the html
+    let strat1 = {
+        name: "Stratergy1",
+        isActive: false,
+        condition: [
+            { "win": "reset" },
+            { "loose": { "inc": 2 } },
+        ],
+    };
+
+    let strat2 = {
+        name: "Stratergy2", // Changed to "stratergy2" to differentiate from strat1
+        isActive: false,
+        condition: [
+            { "win": { "inc": 1.5 } },
+            { "loose": "reset" },
+        ],
+    };
+
+    strategies.push(strat1)
+    strategies.push(strat2)
+
+    let strategiesString = JSON.stringify(strategies);
+
+    localStorage.setItem("allStrat", strategiesString);
+
+    let storedStrategiesString = localStorage.getItem("allStrat");
+
+    if (!storedStrategiesString) {
+        console.log("No strategies found in local storage.");
+    } else {
+        function updateAndStoreStrategies(updatedStrategies) {
+        localStorage.setItem("allStrat", JSON.stringify(updatedStrategies));
     }
+
+    let allStratBtns= document.querySelectorAll(".strat-btn");
+    let storedStrategiesString = localStorage.getItem("allStrat");
+    let storedStrategies = storedStrategiesString ? JSON.parse(storedStrategiesString) : [];
+
+    allStratBtns.forEach(e => {
+        e.addEventListener("click", () => {
+            let nameOfStrat = e.innerText;
+            storedStrategies.forEach(s => {
+                if (nameOfStrat === s.name) {
+                    s.isActive = true;
+                    dsplStrat.innerText = `Using: ${s.name}`;
+                } else {
+                    s.isActive = false;
+                }
+            });
+
+            updateAndStoreStrategies(storedStrategies);
+
+            overlay.style.display = "none";
+            useStratModel.style.display = "none";
+        });
+    });
+
+    }
+
+
+    // over
+
 }
 useStratergy();
