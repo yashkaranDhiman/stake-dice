@@ -475,6 +475,260 @@ i{
 
 }
 
+
+
+#stratergy{
+    font-size: 1.4vw;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    background-color: #2B404C;
+    text-transform: capitalize;
+    transition: all ease 0.1s;
+    cursor: pointer;
+    width: 85%;
+    color: white;
+    padding: 1vw 0;
+}
+#stratergy:hover{
+    background-color: #435765;
+}
+#use-strat-model{
+    width: 50%;
+    height: 60%;
+    background-color: #1A2C38;
+    position: absolute;
+    display: none;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 99999;
+    border-radius: 5px;
+    color: white;
+}
+#use-strat-cont{
+    padding: 1vw 2vw;
+    height: 100%;
+}
+#use-strat-model h2{
+    font-size: 1.6vw;
+    font-weight: 300;
+}
+#all-strats{
+    display: flex;
+    flex-direction: column;
+    margin-top: 2vw;
+    align-items: center;
+    gap: 1vw;
+}
+#close3,#close4{
+    right: 2%;
+    top: 4%;
+    color: white;
+    position: absolute;
+    font-size: 1.4vw;
+}
+.strat-btn{
+    width: 70%;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 1vw 2vw;
+    display: flex;
+    position: relative;
+    align-items: center;
+    height: 20%;
+    justify-content: center;
+    background-color: #2D404D;
+}
+.strat-btn p{
+    font-size: 1.4vw;
+    font-weight: 400;
+}
+#using{
+    position: absolute;
+    top: 1%;
+    right: 2%;
+}
+#create-strat{
+    font-size: 1.4vw;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    width: 50%;
+    background-color: #00E919;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    color: black;
+    font-weight: 500;
+    text-transform: capitalize;
+    position: absolute;
+    bottom: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 999;
+    height: 20%;
+}
+#stats-disp{
+    position: absolute;
+    left: 2%;
+    top: 2%;
+}
+#wincount{
+    color: #00E919;
+    font-weight: 600;
+}
+#loosecount{
+    color: #D71640;
+    font-weight: 600;
+}
+#create-strat-model{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    display: flex;
+    z-index: 999999;
+    border-radius: 8px;
+    display: none;
+    color: white;
+    flex-direction: column;
+    background-color: #1A2C38;
+    width: 50%;
+    height: 80%;
+}
+.design{
+    border: 1px solid #dadada;
+    background-color: #10212C;
+    border-radius: 5px;
+    padding: 5px;
+    color: white;
+    padding: 10px;
+    outline: none;
+    font-size: 1.2vw;
+}
+#top-name{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    margin: 2vw 0;
+    justify-content: space-evenly;
+}
+#top-name h2{
+    font-size: 1.6vw;
+    font-weight: 400;
+}
+#bottom-part {
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 2vw;
+    padding-bottom: 2vw;
+    align-items: center;
+}
+#add-condition{
+    position: absolute;
+    top: -6%;
+    background-color: #101E29;
+    color: white;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    padding: 0.5vw 1vw;
+    font-size: 0.8vw;
+}
+.remove-condition{
+    background-color: #0F2236;
+    color: white;
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid #dadada;
+    cursor: pointer;
+    
+}
+#condition-box {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    gap: 2vw;
+    align-items: center;
+    position: relative;
+    max-height: 45vh; /* Set a maximum height for the condition box */
+    overflow-y: auto;  /* Enable vertical scrolling */
+    overflow-x: hidden;
+    padding: 1vw; /* Optional: Add some padding inside the box */
+}
+#condition-box::-webkit-scrollbar {
+    width: 8px;
+}
+#condition-box::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}
+#condition-box::-webkit-scrollbar-thumb {
+    background: #888; 
+}
+#condition-box::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+}
+
+.bottom-cond{
+    display: flex;
+    justify-content: space-between;
+}
+select option{
+    text-transform: capitalize;
+}
+.hlf{
+    width: 45%;
+}
+.condition{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #dadada;
+    width: 90%;
+    padding: 2vw;
+    border-radius: 5px;
+    gap: 2vw;
+}
+#done{
+    font-size: 1.4vw;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    width: 50%;
+    background-color: #00E919;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    position: fixed;
+    border-radius: 5px;
+    font-weight: 500;
+    z-index: 999;
+    height: 10%;
+    bottom: 5%;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+}
+#close4{
+    font-size: 1.4vw;
+    position: absolute;
+    top: 2%;
+    right: 2%;
+}
+.delete-strat{
+    position: absolute;
+    right: 2%;
+    font-size: 1.4vw;
+    color: #D71640;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    padding: 6px 10px;
+}
 @media screen and (max-width:500px) {
     body{
         overflow-y: auto;
@@ -571,112 +825,69 @@ i{
         bottom: 3vw;
         width: 95%;
     }
-}
-
-#stratergy{
-    font-size: 1.4vw;
-    border: none;
-    outline: none;
-    border-radius: 5px;
-    background-color: #2B404C;
-    text-transform: capitalize;
-    transition: all ease 0.1s;
-    cursor: pointer;
-    width: 85%;
-    color: white;
-    padding: 1vw 0;
-}
-#stratergy:hover{
-    background-color: #435765;
-}
-#use-strat-model{
-    width: 50%;
-    height: 60%;
-    /* background-color: #165f90; */
-    background-color: #1A2C38;
-    position: absolute;
-    display: none;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    z-index: 99999;
-    border-radius: 5px;
-    color: white;
-}
-#use-strat-cont{
-    padding: 1vw 2vw;
-    height: 100%;
-}
-#use-strat-model h2{
-    font-size: 1.6vw;
-    font-weight: 300;
-}
-#all-strats{
-    display: flex;
-    flex-direction: column;
-    margin-top: 2vw;
-    align-items: center;
-    gap: 1vw;
-}
-
-#close3,#close4{
-    right: 2%;
-    top: 4%;
-    color: white;
-    position: absolute;
-    font-size: 1.4vw;
-}
-.strat-btn{
-    width: 70%;
-    border-radius: 5px;
-    cursor: pointer;
-    padding: 1vw 2vw;
-    display: flex;
-    align-items: center;
-    height: 20%;
-    justify-content: center;
-    background-color: #2D404D;
-}
-.strat-btn p{
-    font-size: 1.4vw;
-    font-weight: 400;
-}
-#using{
-    position: absolute;
-    top: 1%;
-    right: 2%;
-}
-#create-strat{
-    font-size: 1.4vw;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    width: 50%;
-    background-color: #00E919;
-    cursor: pointer;
-    border: none;
-    outline: none;
-    border-radius: 5px;
-    color: black;
-    font-weight: 500;
-    text-transform: capitalize;
-    position: absolute;
-    bottom: 5%;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 999;
-    height: 20%;
-}
-#stats-disp{
-    position: absolute;
-    left: 2%;
-    top: 2%;
-}
-#wincount{
-    color: #00E919;
-    font-weight: 600;
-}
-#loosecount{
-    color: #D71640;
-    font-weight: 600;
+    #stratergy{
+        font-size: 4vw;
+        padding: 2vw;
+    }
+    #use-strat-model{
+        width: 80%;
+        height: 60%;
+    }
+    #use-strat-model h2{
+        font-size: 3vw;
+    }
+    #all-strats{
+        gap: 3vw;
+    }
+    .strat-btn  {
+        width: 80%;
+    }
+    .strat-btn p{
+        font-size: 3vw;
+        padding: 2vw;
+    }
+    
+    #create-strat{
+        font-size: 4vw;
+        height: 50px;
+        font-weight: 400;
+    }
+    .delete-strat{
+        font-size: 4vw;
+        padding: 2px 5px;
+    }
+    #close3,#close4{
+        font-size: 3vw;
+    }
+    #create-strat-model{
+        width: 80%;
+        height: 70%;
+    }
+    .design{
+        font-size: 3vw;
+        padding: 10px;
+    }
+    #top-name{
+        margin: 8vw 0;
+    }
+    #top-name h2{
+        font-size: 3vw;
+        font-weight: 400;
+    }
+    #inp-name{
+        width: 40%;
+        height: 10px;
+    }
+    #add-condition{
+        font-size: 2vw;
+        padding: 2vw;
+    }
+    #condition-box {
+        width: 94%;
+        gap: 4vw;
+    }
+    #done{
+        font-size: 3vw;
+        height: 40px;
+    }
 }

@@ -12,6 +12,36 @@
 <body>
     <main>
         <div id="page">
+            <div id="create-strat-model">
+                <i class="ri-close-large-line" id="close4"></i>
+                <div id="top-name">
+                    <h2>Enter the name : </h2>
+                    <input type="text" name="" class="design" id="inp-name">
+                </div>
+                <div id="bottom-part">
+                    <div id="condition-box">
+                        <div class="condition">
+                            <select name="on" id="on" class="design">
+                                <option value="win">win</option>
+                                <option value="loose">loose</option>
+                            </select>
+                            <div class="bottom-cond">
+                                <select name="do" id="do" class="design hlf">
+                                    <option value="inc">increase</option>
+                                    <option value="dec">decrese</option>
+                                    <option value="reset">reset</option>
+                                </select>
+                                <input type="text" name="" class="design hlf" placeholder="times" id="">
+                            </div>
+                            <button class="remove-condition">Remove</button>
+                        </div>
+                    </div>
+                    <button id="add-condition">Add Condition</button>
+                </div>
+                <button id="done">
+                    Done
+                </button>
+            </div>
             
             <div id="use-strat-model">
                 <div id="use-strat-cont">
@@ -20,12 +50,6 @@
                     <div id="all-strats">
                         <div id="strat1-btn" class="strat-btn">
                             <p>stratergy1</p>
-                        </div>
-                        <div class="strat-btn">
-                            <p>stratergy2</p>
-                        </div>
-                        <div class="strat-btn">
-                            <p>stratergy3</p>
                         </div>
                     </div>
                     <div id="create-strat">

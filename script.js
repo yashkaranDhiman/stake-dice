@@ -409,81 +409,143 @@ function auto() {
 auto()
 
 function useStratergy() {
-    strategies = [];
     let useBtn = document.getElementById("stratergy");
     let useStratModel = document.getElementById("use-strat-model");
     let dsplStrat = document.getElementById("using");
-    let close = document.getElementById("close3");
+    let close3 = document.getElementById("close3");
+
     useBtn.addEventListener("click", () => {
         useStratModel.style.display = "block";
         overlay.style.display = "block";
     });
-    close.addEventListener("click", () => {
+
+    close3.addEventListener("click", () => {
         useStratModel.style.display = "none";
         overlay.style.display = "none";
     });
-    // this part is only for testing purpose and the strats will be added from the html
-    let strat1 = {
-        name: "Stratergy1",
-        isActive: false,
-        condition: [
-            { "win": "reset" },
-            { "loose": { "inc": 2 } },
-        ],
-    };
 
-    let strat2 = {
-        name: "Stratergy2", // Changed to "stratergy2" to differentiate from strat1
-        isActive: false,
-        condition: [
-            { "win": { "inc": 1.5 } },
-            { "loose": "reset" },
-        ],
-    };
+    let createmodel = document.getElementById("create-strat-model");
+    let openModelBtn = document.getElementById("create-strat");
+    let close4 = document.getElementById("close4");
 
-    strategies.push(strat1)
-    strategies.push(strat2)
-
-    let strategiesString = JSON.stringify(strategies);
-
-    localStorage.setItem("allStrat", strategiesString);
-
-    let storedStrategiesString = localStorage.getItem("allStrat");
-
-    if (!storedStrategiesString) {
-        console.log("No strategies found in local storage.");
-    } else {
-        function updateAndStoreStrategies(updatedStrategies) {
-        localStorage.setItem("allStrat", JSON.stringify(updatedStrategies));
-    }
-
-    let allStratBtns= document.querySelectorAll(".strat-btn");
-    let storedStrategiesString = localStorage.getItem("allStrat");
-    let storedStrategies = storedStrategiesString ? JSON.parse(storedStrategiesString) : [];
-
-    allStratBtns.forEach(e => {
-        e.addEventListener("click", () => {
-            let nameOfStrat = e.innerText;
-            storedStrategies.forEach(s => {
-                if (nameOfStrat === s.name) {
-                    s.isActive = true;
-                    dsplStrat.innerText = `Using: ${s.name}`;
-                } else {
-                    s.isActive = false;
-                }
-            });
-
-            updateAndStoreStrategies(storedStrategies);
-
-            overlay.style.display = "none";
-            useStratModel.style.display = "none";
-        });
+    openModelBtn.addEventListener("click", () => {
+        createmodel.style.display = "block";
     });
 
+    close4.addEventListener("click", () => {
+        createmodel.style.display = "none";
+    });
+
+    // Add new condition
+    document.getElementById("add-condition").addEventListener("click", () => {
+        let conditionBox = document.getElementById("condition-box");
+        let newCondition = document.createElement("div");
+        newCondition.classList.add("condition");
+
+        newCondition.innerHTML = `
+            <select name="on" class="design">
+                <option value="win">win</option>
+                <option value="loose">loose</option>
+            </select>
+            <div class="bottom-cond">
+                <select name="do" class="design hlf">
+                    <option value="inc">increase</option>
+                    <option value="dec">decrease</option>
+                    <option value="reset">reset</option>
+                </select>
+                <input type="text" class="design hlf" placeholder="times">
+            </div>
+            <button class="remove-condition">Remove</button>
+        `;
+        
+        // Add event listener to the remove button
+        newCondition.querySelector(".remove-condition").addEventListener("click", () => {
+            newCondition.remove();
+        });
+
+        conditionBox.appendChild(newCondition);
+    });
+
+    // Handle the "Done" button click
+    document.getElementById("done").addEventListener("click", () => {
+        let name = document.getElementById("inp-name").value;
+        let conditions = [];
+        
+        document.querySelectorAll("#condition-box .condition").forEach(conditionDiv => {
+            let onCondition = conditionDiv.querySelector('[name="on"]').value;
+            let doAction = conditionDiv.querySelector('[name="do"]').value;
+            let timesValue = conditionDiv.querySelector('.bottom-cond input').value;
+
+            let condition = {};
+            if (doAction === "reset") {
+                condition[onCondition] = "reset";
+            } else if (doAction === "inc" || doAction === "dec") {
+                condition[onCondition] = { [doAction]: parseFloat(timesValue) };
+            }
+            conditions.push(condition);
+        });
+
+        let newStrat = {
+            name: name,
+            isActive: false,
+            condition: conditions
+        };
+
+        let storedStrategiesString = localStorage.getItem("allStrat");
+        let storedStrategies = storedStrategiesString ? JSON.parse(storedStrategiesString) : [];
+
+        storedStrategies.push(newStrat);
+
+        localStorage.setItem("allStrat", JSON.stringify(storedStrategies));
+
+        document.getElementById("inp-name").value = "";
+        document.getElementById("condition-box").innerHTML = "";
+
+        document.getElementById("create-strat-model").style.display = "none";
+        overlay.style.display = "none";
+
+        updateStrategyButtons();
+    });
+
+    function updateStrategyButtons() {
+        let storedStrategiesString = localStorage.getItem("allStrat");
+        let storedStrategies = storedStrategiesString ? JSON.parse(storedStrategiesString) : [];
+        let allStratsDiv = document.getElementById("all-strats");
+
+        allStratsDiv.innerHTML = "";
+
+        storedStrategies.forEach((strat, index) => {
+            let stratBtnDiv = document.createElement("div");
+            stratBtnDiv.classList.add("strat-btn");
+            stratBtnDiv.id = `strat-btn-${index}`;
+
+            stratBtnDiv.innerHTML = `
+                <p>${strat.name}</p>
+                <button class="delete-strat"><i class="ri-delete-bin-7-line"></i></button>
+            `;
+
+            stratBtnDiv.querySelector("p").addEventListener("click", () => {
+                storedStrategies.forEach(s => s.isActive = false);
+                strat.isActive = true;
+                localStorage.setItem("allStrat", JSON.stringify(storedStrategies));
+                dsplStrat.innerText = `Using: ${strat.name}`;
+                useStratModel.style.display = "none";
+                overlay.style.display = "none";
+            });
+
+            stratBtnDiv.querySelector(".delete-strat").addEventListener("click", () => {
+                storedStrategies.splice(index, 1);
+                localStorage.setItem("allStrat", JSON.stringify(storedStrategies));
+                updateStrategyButtons();
+            });
+
+            allStratsDiv.appendChild(stratBtnDiv);
+        });
     }
 
-
-    // over
-
+    updateStrategyButtons();
 }
+
 useStratergy();
+
+
