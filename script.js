@@ -161,11 +161,12 @@ function animateDice(profit, rn, speed) {
     if (speed) {
         if (speed === 100 || speed === 10) {
             Dice.style.transition = "";
+            winaud.volume = 0;
             winaud.pause();
         }
     }
     if (profit > 0 && speed === 500 || profit > 0 && !speed) {
-        winaud.valume = 0.5
+        winaud.valume = 0.5;
         winaud.play();
     }
 
